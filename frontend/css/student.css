@@ -1,0 +1,156 @@
+/* ==========================================================
+   Crumb & Cream — student.css
+   ========================================================== */
+
+.dashboard-header {
+  padding: var(--sp-6) 0 var(--sp-2);
+}
+.dashboard-header h1 { font-size: 28px; margin-bottom: 2px; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-3);
+  margin: var(--sp-5) 0;
+}
+.stat-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+}
+.stat-card .stat-num { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--color-charcoal); }
+.stat-card .stat-label { font-size: 13px; color: var(--color-text-muted); margin-top: 4px; }
+.stat-card.accent .stat-num { color: var(--color-coral-dark); }
+
+.cta-banner {
+  background: linear-gradient(135deg, var(--color-coral), var(--color-coral-dark));
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+  flex-wrap: wrap;
+}
+.cta-banner h2, .cta-banner p { color: white; margin-bottom: 4px; }
+.cta-banner .btn-primary { background: white; color: var(--color-coral-dark); }
+.cta-banner .btn-primary:hover { background: var(--color-cream); }
+
+/* Order cards (dashboard + my orders) */
+.order-list { display: flex; flex-direction: column; gap: var(--sp-3); }
+.order-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+.order-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+.order-card .order-thumb { width: 64px; height: 64px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; background: var(--color-coral-light); }
+.order-card .order-info { flex: 1; min-width: 0; }
+.order-card .order-id { font-size: 12.5px; color: var(--color-text-muted); font-weight: 600; }
+.order-card .order-title { font-family: var(--font-display); font-size: 16px; color: var(--color-charcoal); margin: 2px 0; }
+.order-card .order-meta { font-size: 12.5px; color: var(--color-text-muted); }
+.order-card .order-side { display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-2); flex-shrink: 0; }
+
+/* Tabs (My Orders) */
+.tab-bar { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-5); flex-wrap: wrap; }
+.tab-btn {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+}
+.tab-btn.active { background: var(--color-charcoal); color: white; border-color: var(--color-charcoal); }
+
+/* Order details */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-6);
+  align-items: flex-start;
+}
+.detail-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+.detail-card h3 { font-size: 16px; margin-bottom: var(--sp-3); }
+.detail-row { display: flex; justify-content: space-between; padding: var(--sp-2) 0; border-bottom: 1px solid var(--color-border); font-size: 13.5px; }
+.detail-row:last-child { border-bottom: none; }
+.detail-row .label { color: var(--color-text-muted); }
+.detail-row .value { font-weight: 600; color: var(--color-charcoal); text-align: right; }
+.detail-image { width: 100%; border-radius: var(--radius-md); aspect-ratio: 4/3; object-fit: cover; margin-bottom: var(--sp-3); }
+.message-box { background: var(--color-cream); border-radius: var(--radius-sm); padding: var(--sp-3); font-style: italic; font-size: 14px; }
+
+/* Status tracker */
+.tracker { display: flex; align-items: flex-start; margin: var(--sp-4) 0; }
+.tracker-step { flex: 1; text-align: center; position: relative; }
+.tracker-step .tracker-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--color-border);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto var(--sp-2);
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+}
+.tracker-step .tracker-line {
+  position: absolute;
+  top: 16px; left: -50%; width: 100%;
+  height: 3px;
+  background: var(--color-border);
+  z-index: 1;
+}
+.tracker-step:first-child .tracker-line { display: none; }
+.tracker-step.done .tracker-dot { background: var(--color-coral); }
+.tracker-step.done .tracker-line { background: var(--color-coral); }
+.tracker-step.current .tracker-dot { background: var(--color-coral); box-shadow: 0 0 0 4px var(--color-coral-light); }
+.tracker-step .tracker-label { font-size: 12px; font-weight: 600; color: var(--color-text-muted); }
+.tracker-step.done .tracker-label, .tracker-step.current .tracker-label { color: var(--color-charcoal); }
+.tracker.rejected .tracker-dot { background: var(--color-danger) !important; }
+
+/* Notifications */
+.notif-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+.notif-item {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  position: relative;
+}
+.notif-item.unread { background: var(--color-coral-light); border-color: #FFD5CD; }
+.notif-icon { font-size: 20px; }
+.notif-content { flex: 1; }
+.notif-message { font-size: 14px; color: var(--color-charcoal); font-weight: 500; margin-bottom: 2px; }
+.notif-time { font-size: 12px; color: var(--color-text-muted); }
+.notif-unread-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-coral); flex-shrink: 0; margin-top: 6px; }
+
+.section-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-4); flex-wrap: wrap; gap: var(--sp-2); }
+
+@media (max-width: 900px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .detail-grid { grid-template-columns: 1fr; }
+  .order-card { flex-wrap: wrap; }
+  .tracker-step .tracker-label { font-size: 10.5px; }
+}
+@media (max-width: 560px) {
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .cta-banner { flex-direction: column; align-items: flex-start; }
+}

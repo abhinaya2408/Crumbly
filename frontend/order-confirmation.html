@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — Crumbly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/student.css">
+<link rel="stylesheet" href="css/crumbly-extra.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="customize.html" class="brand"><span class="brand-mark">🍰</span> Crumbly</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="customize.html">Customize</a>
+      <a href="my-orders.html">My Orders</a>
+      <a href="notifications.html">Notifications <span class="nav-badge" data-unread-badge></span></a>
+      <a href="student-profile.html">Profile</a>
+      <a href="#" onclick="handleStudentLogout(); return false;">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="max-width:640px; padding-top: var(--sp-7); padding-bottom: var(--sp-8);">
+  <div class="text-center" style="margin-bottom: var(--sp-5);">
+    <div style="width:72px;height:72px;border-radius:50%;background:var(--color-success);color:white;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto var(--sp-3);">✓</div>
+    <h1>Your cake order is confirmed!</h1>
+    <p>Your request has been sent to the bakery.</p>
+  </div>
+
+  <div id="confirmationCard"></div>
+
+  <div class="text-center" style="margin-top: var(--sp-5);">
+    <a href="#" id="trackOrderBtn" class="btn btn-primary">Track My Order</a>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/orders.js"></script>
+<script>initOrderConfirmationPage();</script>
+</body>
+</html>

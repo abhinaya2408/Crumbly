@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Details — Bakery Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/student.css">
+<link rel="stylesheet" href="css/owner.css">
+<link rel="stylesheet" href="css/crumbly-extra.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="owner-dashboard.html" class="brand"><span class="brand-mark">🍰</span> Crumbly <span style="font-size:12px;font-weight:600;color:var(--color-text-muted);margin-left:6px;">Bakery Portal</span></a>
+    <div class="nav-links">
+      <a href="#" onclick="handleOwnerLogout(); return false;">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="padding-top: var(--sp-6); padding-bottom: var(--sp-8); max-width: 1100px;">
+  <a href="owner-dashboard.html" class="back-home">← Back to Dashboard</a>
+  <div id="ownerOrderRoot"></div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/owner.js"></script>
+<script>initOwnerOrderDetailsPage();</script>
+</body>
+</html>

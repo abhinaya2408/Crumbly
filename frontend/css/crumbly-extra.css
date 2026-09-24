@@ -1,0 +1,112 @@
+/* ==========================================================
+   Crumbly — crumbly-extra.css
+   Additive styles for features layered onto the original design:
+   reviews/star ratings, status-history timeline, lightweight
+   analytics bar charts, pickup-slot cards, inventory badges.
+   Reuses existing variables/classes from style.css + owner.css
+   wherever possible — this file only adds what's genuinely new.
+   ========================================================== */
+
+/* ---------- Star rating ---------- */
+.star-input { display: flex; gap: 4px; font-size: 26px; line-height: 1; }
+.star-input button {
+  background: none; border: none; cursor: pointer; padding: 2px;
+  color: var(--color-border); transition: color .15s ease, transform .1s ease;
+}
+.star-input button.filled { color: #F5B301; }
+.star-input button:hover { transform: scale(1.1); }
+.star-display { color: #F5B301; font-size: 15px; letter-spacing: 1px; }
+.star-display .empty { color: var(--color-border); }
+
+.review-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3) var(--sp-4);
+  margin-bottom: var(--sp-2);
+  background: var(--color-white);
+}
+.review-card .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.review-card .review-author { font-weight: 700; font-size: 14px; }
+.review-card .review-comment { font-size: 13.5px; color: var(--color-text); margin-top: 4px; }
+.review-card .review-date { font-size: 12px; color: var(--color-text-muted); }
+
+/* ---------- Status history timeline ---------- */
+.status-timeline { display: flex; flex-direction: column; gap: 0; }
+.status-timeline .tl-item { position: relative; padding: 0 0 var(--sp-4) 28px; }
+.status-timeline .tl-item::before {
+  content: ""; position: absolute; left: 6px; top: 4px; width: 9px; height: 9px;
+  border-radius: 50%; background: var(--color-coral); box-shadow: 0 0 0 3px var(--color-coral-light);
+}
+.status-timeline .tl-item::after {
+  content: ""; position: absolute; left: 10px; top: 16px; bottom: 0; width: 1.5px; background: var(--color-border);
+}
+.status-timeline .tl-item:last-child::after { display: none; }
+.status-timeline .tl-title { font-weight: 700; font-size: 13.5px; }
+.status-timeline .tl-meta { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }
+.status-timeline .tl-note { font-size: 12.5px; color: var(--color-text); margin-top: 3px; font-style: italic; }
+
+/* ---------- Low stock / warning badges ---------- */
+.badge-warning {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #FFF1DA; color: var(--color-warning);
+  padding: 4px 12px; border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: 700;
+}
+.warning-banner {
+  display: flex; align-items: center; gap: var(--sp-2);
+  background: #FFF6E8; border: 1px solid #F5D9A8; color: #8A5A00;
+  padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md);
+  margin-bottom: var(--sp-4); font-size: 13.5px; font-weight: 600;
+}
+
+/* ---------- Lightweight CSS bar charts (no chart library) ---------- */
+.bar-chart-row { display: flex; align-items: center; gap: var(--sp-2); margin-bottom: 10px; font-size: 13px; }
+.bar-chart-row .bar-label { width: 130px; flex-shrink: 0; color: var(--color-text); }
+.bar-chart-row .bar-track { flex: 1; background: var(--color-cream); border-radius: var(--radius-pill); height: 14px; overflow: hidden; }
+.bar-chart-row .bar-fill { height: 100%; background: linear-gradient(90deg, var(--color-coral), var(--color-coral-dark)); border-radius: var(--radius-pill); }
+.bar-chart-row .bar-value { width: 34px; text-align: right; flex-shrink: 0; font-weight: 700; color: var(--color-text-muted); }
+
+.daily-chart { display: flex; align-items: flex-end; gap: 8px; height: 120px; padding-top: var(--sp-2); }
+.daily-chart .day-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.daily-chart .day-bar { width: 100%; max-width: 34px; background: var(--color-coral); border-radius: 6px 6px 0 0; min-height: 3px; }
+.daily-chart .day-label { font-size: 11px; color: var(--color-text-muted); margin-top: 6px; }
+.daily-chart .day-count { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+
+/* ---------- Pickup slot manager ---------- */
+.slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: var(--sp-3); }
+.slot-card {
+  border: 1px solid var(--color-border); border-radius: var(--radius-md);
+  padding: var(--sp-3) var(--sp-4); background: var(--color-white);
+}
+.slot-card.inactive { opacity: .55; }
+.slot-card .slot-time { font-weight: 700; font-size: 15px; }
+.slot-card .slot-meta { font-size: 12.5px; color: var(--color-text-muted); margin: 4px 0 var(--sp-2); }
+.slot-card .slot-actions { display: flex; gap: 8px; }
+
+.inline-form { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: flex-end; margin-bottom: var(--sp-5); }
+.inline-form .form-group { margin-bottom: 0; min-width: 120px; }
+
+/* ---------- Category badge (inventory) ---------- */
+.category-badge {
+  display: inline-block; padding: 3px 10px; border-radius: var(--radius-pill);
+  font-size: 11.5px; font-weight: 700; background: var(--color-cream); color: var(--color-text-muted);
+}
+
+/* ---------- Simple profile card ---------- */
+.profile-avatar {
+  width: 72px; height: 72px; border-radius: 50%; background: var(--color-coral-light);
+  color: var(--color-coral-dark); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 26px; font-weight: 700; margin-bottom: var(--sp-3);
+}
+
+/* ---------- Generic search box (student pages that don't load owner.css) ---------- */
+.search-box { position: relative; max-width: 360px; margin-bottom: var(--sp-4); }
+.search-box input {
+  width: 100%; padding: 10px 14px 10px 40px; border-radius: var(--radius-md);
+  border: 1px solid var(--color-border); font-family: inherit; font-size: 14px;
+}
+.search-box .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--color-text-muted); }
+
+@media (max-width: 640px) {
+  .bar-chart-row .bar-label { width: 90px; font-size: 12px; }
+}

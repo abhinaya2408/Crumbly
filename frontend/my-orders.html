@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders — Crumbly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/student.css">
+<link rel="stylesheet" href="css/crumbly-extra.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="customize.html" class="brand"><span class="brand-mark">🍰</span> Crumbly</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="customize.html">Customize</a>
+      <a href="my-orders.html" class="active">My Orders</a>
+      <a href="notifications.html">Notifications <span class="nav-badge" data-unread-badge></span></a>
+      <a href="student-profile.html">Profile</a>
+      <a href="#" onclick="handleStudentLogout(); return false;">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container dashboard-header">
+  <h1>My Orders</h1>
+  <p>Track every cake you've ordered, from placed to collected.</p>
+</div>
+
+<div class="container" style="padding-bottom: var(--sp-8);">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="orderSearchInput" placeholder="Search by order ID or flavor...">
+  </div>
+  <div class="tab-bar" id="tabBar">
+    <button class="tab-btn active" data-tab="all">All</button>
+    <button class="tab-btn" data-tab="pending">Pending</button>
+    <button class="tab-btn" data-tab="preparing">Preparing</button>
+    <button class="tab-btn" data-tab="ready">Ready</button>
+    <button class="tab-btn" data-tab="completed">Completed</button>
+    <button class="tab-btn" data-tab="rejected">Rejected</button>
+    <button class="tab-btn" data-tab="cancelled">Cancelled</button>
+  </div>
+  <div class="order-list" id="ordersList"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="emoji">🎂</div>
+    <h3>No cake orders yet</h3>
+    <p>Your customized cakes will appear here.</p>
+    <a href="customize.html" class="btn btn-primary">Customize a Cake</a>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/orders.js"></script>
+<script>initMyOrdersPage();</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bakery Dashboard — Crumbly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/owner.css">
+<link rel="stylesheet" href="css/crumbly-extra.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="owner-dashboard.html" class="brand"><span class="brand-mark">🍰</span> Crumbly <span style="font-size:12px;font-weight:600;color:var(--color-text-muted);margin-left:6px;">Bakery Portal</span></a>
+    <div class="nav-links">
+      <a href="#" onclick="handleOwnerLogout(); return false;">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="owner-shell">
+  <aside class="owner-sidebar" id="ownerSidebar">
+    <div class="side-label">Overview</div>
+    <a href="owner-dashboard.html" class="side-link active">📊 Dashboard</a>
+    <a href="owner-analytics.html" class="side-link">📈 Analytics</a>
+    <div class="side-label">Orders</div>
+    <a href="#" class="side-link" data-status-filter="all">📦 All Orders</a>
+    <a href="#" class="side-link" data-status-filter="PENDING">🕓 Pending <span class="count" id="countPending"></span></a>
+    <a href="#" class="side-link" data-status-filter="PREPARING">👩‍🍳 Preparing <span class="count" id="countPreparing"></span></a>
+    <a href="#" class="side-link" data-status-filter="READY">✅ Ready <span class="count" id="countReady"></span></a>
+    <a href="#" class="side-link" data-status-filter="COMPLETED">🎉 Completed <span class="count" id="countCompleted"></span></a>
+    <div class="side-label">Manage</div>
+    <a href="owner-pickup-slots.html" class="side-link">🕐 Pickup Slots</a>
+    <a href="owner-inventory.html" class="side-link">📦 Inventory</a>
+    <div class="side-label">Other</div>
+    <a href="/admin/" class="side-link" target="_blank" rel="noopener">🛠️ Django Admin</a>
+  </aside>
+
+  <main class="owner-main">
+    <button class="btn btn-secondary btn-sm mobile-sidebar-toggle" id="mobileSidebarToggle">☰ Menu</button>
+    <div class="owner-topbar">
+      <h1>Bakery Dashboard</h1>
+    </div>
+
+    <div id="lowStockBanner"></div>
+
+    <div class="owner-stat-grid">
+      <div class="owner-stat-card new"><div class="stat-num" id="statNew">0</div><div class="stat-label">New Orders</div></div>
+      <div class="owner-stat-card"><div class="stat-num" id="statPreparing">0</div><div class="stat-label">Preparing</div></div>
+      <div class="owner-stat-card"><div class="stat-num" id="statReady">0</div><div class="stat-label">Ready</div></div>
+      <div class="owner-stat-card"><div class="stat-num" id="statCompleted">0</div><div class="stat-label">Completed</div></div>
+      <div class="owner-stat-card"><div class="stat-num" id="statTodayOrders">0</div><div class="stat-label">Today's Orders</div></div>
+      <div class="owner-stat-card"><div class="stat-num" id="statRevenueToday">₹0</div><div class="stat-label">Today's Revenue</div></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by student name, student ID, or order ID">
+      </div>
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="PENDING">Pending</button>
+        <button class="filter-pill" data-filter="ACCEPTED">Accepted</button>
+        <button class="filter-pill" data-filter="PREPARING">Preparing</button>
+        <button class="filter-pill" data-filter="READY">Ready</button>
+        <button class="filter-pill" data-filter="COMPLETED">Completed</button>
+        <button class="filter-pill" data-filter="REJECTED">Rejected</button>
+        <button class="filter-pill" data-filter="CANCELLED">Cancelled</button>
+      </div>
+    </div>
+
+    <div class="orders-table-wrap">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Order ID</th>
+            <th>Student</th>
+            <th>Cake</th>
+            <th>Required</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody"></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="ownerEmptyState" style="display:none; margin-top: var(--sp-4);">
+      <div class="emoji">📭</div>
+      <h3>No matching orders</h3>
+      <p class="mb-0">Try a different filter or search term.</p>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/owner.js"></script>
+<script>initOwnerDashboardPage();</script>
+</body>
+</html>

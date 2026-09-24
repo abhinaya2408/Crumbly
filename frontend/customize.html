@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customize Your Cake — Crumbly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/student.css">
+<link rel="stylesheet" href="css/customize.css">
+<link rel="stylesheet" href="css/crumbly-extra.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="customize.html" class="brand"><span class="brand-mark">🍰</span> Crumbly</a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="customize.html" class="active">Customize</a>
+      <a href="my-orders.html">My Orders</a>
+      <a href="notifications.html">Notifications <span class="nav-badge" data-unread-badge></span></a>
+      <a href="student-profile.html">Profile</a>
+      <a href="#" onclick="handleStudentLogout(); return false;">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container page-header">
+  <h1>Customize Your Cake</h1>
+  <p>Choose every detail — we'll bake it exactly the way you imagine it.</p>
+</div>
+
+<div class="container customize-layout">
+  <!-- LEFT: Form -->
+  <div>
+    <form id="customizeForm" novalidate>
+
+      <div class="form-section">
+        <h3>🎂 Cake Flavor <span class="required-tag">Required</span></h3>
+        <div class="flavor-grid" id="flavorGrid"></div>
+      </div>
+
+      <div class="form-section">
+        <h3>🥚 Cake Type <span class="required-tag">Required</span></h3>
+        <div class="pill-grid two-col" id="cakeTypeGrid">
+          <div class="pill-option" data-value="Egg">
+            <div class="pill-icon">🥚</div>
+            <div class="pill-label">Egg</div>
+            <div class="pill-sub">Classic preparation</div>
+          </div>
+          <div class="pill-option" data-value="Eggless">
+            <div class="pill-icon">🌿</div>
+            <div class="pill-label">Eggless</div>
+            <div class="pill-sub">Vegetarian-friendly</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>⚖️ Cake Size <span class="required-tag">Required</span></h3>
+        <div class="pill-grid" id="sizeGrid"></div>
+      </div>
+
+      <div class="form-section">
+        <h3>🍨 Cream <span class="required-tag">Required</span></h3>
+        <div class="pill-grid" id="creamGrid"></div>
+      </div>
+
+      <div class="form-section">
+        <h3>✨ Decorations</h3>
+        <p class="section-sub">Optional — pick as many as you like.</p>
+        <div class="deco-grid" id="decoGrid"></div>
+      </div>
+
+      <div class="form-section">
+        <h3>💬 Cake Message</h3>
+        <input type="text" id="cakeMessage" maxlength="50" placeholder="e.g. Happy Birthday Priya!">
+        <div class="char-counter"><span id="msgCount">0</span> / 50</div>
+      </div>
+
+      <div class="form-section">
+        <h3>📝 Special Instructions</h3>
+        <textarea id="specialInstructions" rows="3" placeholder="e.g. Please use pink and white decoration."></textarea>
+      </div>
+
+      <div class="form-section">
+        <h3>📷 Share Your Cake Inspiration</h3>
+        <p class="section-sub">Have a cake design in mind? Upload a photo and we'll use it as your reference.</p>
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-icon">📷</div>
+          <div class="upload-title">Upload a cake reference</div>
+          <div class="upload-hint">JPG, JPEG or PNG · Max 2 MB</div>
+          <button type="button" class="btn btn-secondary btn-sm" id="chooseImageBtn">Choose Image</button>
+          <input type="file" accept="image/jpeg,image/png,image/jpg,image/webp" id="referenceImageInput" style="display:none;">
+        </div>
+        <div class="upload-preview" id="uploadPreview">
+          <img id="uploadPreviewImg" alt="Reference upload preview">
+          <div class="file-meta">
+            <div class="file-name" id="uploadFileName"></div>
+            <div class="file-size" id="uploadFileSize"></div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="removeImageBtn">Remove</button>
+        </div>
+        <div class="field-error" id="imageError"></div>
+      </div>
+
+      <div class="form-section">
+        <h3>📅 Pickup Date &amp; Time <span class="required-tag">Required</span></h3>
+        <div class="form-group">
+          <label for="requiredDate">Required Date</label>
+          <input type="date" id="requiredDate">
+          <div class="field-error" id="dateError"></div>
+        </div>
+        <div class="form-group">
+          <label>Available Pickup Slot</label>
+          <div class="pill-grid" id="slotGrid">
+            <p class="mb-0" id="slotHint" style="font-size:13px;color:var(--color-text-muted);">Choose a date above to see available pickup slots.</p>
+          </div>
+          <div class="field-error" id="slotError"></div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- RIGHT: Live preview + summary -->
+  <div class="preview-col">
+    <div class="preview-card">
+      <div class="preview-image-wrap"><img id="previewImage" alt="Live cake preview"></div>
+      <div class="preview-body">
+        <div class="preview-title" id="previewTitle">Chocolate Cake</div>
+        <div class="preview-tags" id="previewTags">Select your options to see a live preview</div>
+        <div class="preview-message-box" id="previewMessageBox" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <h3 style="font-size:16px;">Order Summary</h3>
+      <div class="summary-row"><span>Cake (base + size)</span><span id="sumBase">₹0</span></div>
+      <div class="summary-row"><span>Decorations</span><span id="sumDecor">₹0</span></div>
+      <div class="summary-row total"><span>Estimated Total</span><span id="sumTotal">₹0</span></div>
+      <div class="field-error" id="formError" style="margin-bottom: var(--sp-2);"></div>
+      <button type="button" class="btn btn-primary btn-block" id="placeOrderBtn" style="margin-top: var(--sp-3);">Place Cake Order</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/customize.js"></script>
+<script>initCustomizePage();</script>
+</body>
+</html>

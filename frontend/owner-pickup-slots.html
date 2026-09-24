@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pickup Slots — Bakery Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/owner.css">
+<link rel="stylesheet" href="css/crumbly-extra.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="owner-dashboard.html" class="brand"><span class="brand-mark">🍰</span> Crumbly <span style="font-size:12px;font-weight:600;color:var(--color-text-muted);margin-left:6px;">Bakery Portal</span></a>
+    <div class="nav-links">
+      <a href="#" onclick="handleOwnerLogout(); return false;">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="owner-shell">
+  <aside class="owner-sidebar" id="ownerSidebar">
+    <div class="side-label">Overview</div>
+    <a href="owner-dashboard.html" class="side-link">📊 Dashboard</a>
+    <a href="owner-analytics.html" class="side-link">📈 Analytics</a>
+    <div class="side-label">Orders</div>
+    <a href="owner-dashboard.html" class="side-link">📦 All Orders</a>
+    <div class="side-label">Manage</div>
+    <a href="owner-pickup-slots.html" class="side-link active">🕐 Pickup Slots</a>
+    <a href="owner-inventory.html" class="side-link">📦 Inventory</a>
+    <div class="side-label">Other</div>
+    <a href="/admin/" class="side-link" target="_blank" rel="noopener">🛠️ Django Admin</a>
+  </aside>
+
+  <main class="owner-main">
+    <button class="btn btn-secondary btn-sm mobile-sidebar-toggle" id="mobileSidebarToggle">☰ Menu</button>
+    <div class="owner-topbar">
+      <h1>Pickup Slots &amp; Closed Dates</h1>
+    </div>
+    <p style="max-width:640px;">Configure the recurring daily pickup windows students can choose from, and mark any dates the bakery is fully closed (holidays, exam breaks, etc.).</p>
+
+    <h3 style="margin-top:var(--sp-5);">Daily Pickup Slots</h3>
+    <div class="inline-form">
+      <div class="form-group">
+        <label for="slotStart">Start Time</label>
+        <input type="time" id="slotStart">
+      </div>
+      <div class="form-group">
+        <label for="slotEnd">End Time</label>
+        <input type="time" id="slotEnd">
+      </div>
+      <div class="form-group">
+        <label for="slotCapacity">Max Orders</label>
+        <input type="number" id="slotCapacity" min="1" value="3" style="width:90px;">
+      </div>
+      <button class="btn btn-primary" id="addSlotBtn">Add Slot</button>
+    </div>
+    <div class="field-error" id="slotFormError"></div>
+    <div class="slot-grid" id="slotGridManage"><p class="mb-0">Loading slots...</p></div>
+
+    <h3 style="margin-top:var(--sp-6);">Closed Dates</h3>
+    <div class="inline-form">
+      <div class="form-group">
+        <label for="closedDateInput">Date</label>
+        <input type="date" id="closedDateInput">
+      </div>
+      <div class="form-group">
+        <label for="closedReasonInput">Reason</label>
+        <input type="text" id="closedReasonInput" placeholder="e.g. Campus Holiday">
+      </div>
+      <button class="btn btn-primary" id="addClosedDateBtn">Add Closed Date</button>
+    </div>
+    <div class="field-error" id="closedFormError"></div>
+    <table class="orders-table" style="margin-top:var(--sp-3);">
+      <thead><tr><th>Date</th><th>Reason</th><th></th></tr></thead>
+      <tbody id="closedDatesBody"></tbody>
+    </table>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/pickup-slots-admin.js"></script>
+<script>initOwnerPickupSlotsPage();</script>
+</body>
+</html>

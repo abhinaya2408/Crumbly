@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics — Bakery Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/owner.css">
+<link rel="stylesheet" href="css/crumbly-extra.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="owner-dashboard.html" class="brand"><span class="brand-mark">🍰</span> Crumbly <span style="font-size:12px;font-weight:600;color:var(--color-text-muted);margin-left:6px;">Bakery Portal</span></a>
+    <div class="nav-links">
+      <a href="#" onclick="handleOwnerLogout(); return false;">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="owner-shell">
+  <aside class="owner-sidebar" id="ownerSidebar">
+    <div class="side-label">Overview</div>
+    <a href="owner-dashboard.html" class="side-link">📊 Dashboard</a>
+    <a href="owner-analytics.html" class="side-link active">📈 Analytics</a>
+    <div class="side-label">Orders</div>
+    <a href="owner-dashboard.html" class="side-link">📦 All Orders</a>
+    <div class="side-label">Manage</div>
+    <a href="owner-pickup-slots.html" class="side-link">🕐 Pickup Slots</a>
+    <a href="owner-inventory.html" class="side-link">📦 Inventory</a>
+    <div class="side-label">Other</div>
+    <a href="/admin/" class="side-link" target="_blank" rel="noopener">🛠️ Django Admin</a>
+  </aside>
+
+  <main class="owner-main">
+    <button class="btn btn-secondary btn-sm mobile-sidebar-toggle" id="mobileSidebarToggle">☰ Menu</button>
+    <div class="owner-topbar">
+      <h1>Analytics</h1>
+    </div>
+
+    <div class="owner-stat-grid" id="analyticsStats"><p class="mb-0">Loading analytics...</p></div>
+
+    <div class="detail-grid" style="margin-top:var(--sp-5);">
+      <div>
+        <div class="detail-card">
+          <h3>Orders — Last 7 Days</h3>
+          <div class="daily-chart" id="dailyChart"></div>
+        </div>
+        <div class="detail-card">
+          <h3>Popular Flavors</h3>
+          <div id="chartFlavors"></div>
+        </div>
+        <div class="detail-card">
+          <h3>Popular Sizes</h3>
+          <div id="chartSizes"></div>
+        </div>
+        <div class="detail-card">
+          <h3>Egg vs Eggless</h3>
+          <div id="chartEggless"></div>
+        </div>
+      </div>
+      <div>
+        <div class="detail-card">
+          <h3>Popular Creams</h3>
+          <div id="chartCreams"></div>
+        </div>
+        <div class="detail-card">
+          <h3>Popular Decorations</h3>
+          <div id="chartDecorations"></div>
+        </div>
+        <div class="detail-card">
+          <h3>Ratings</h3>
+          <div id="ratingsSummary"></div>
+        </div>
+        <div class="detail-card">
+          <h3>Recent Reviews</h3>
+          <div id="recentReviews"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/orders.js"></script>
+<script src="js/analytics-admin.js"></script>
+<script>initOwnerAnalyticsPage();</script>
+</body>
+</html>

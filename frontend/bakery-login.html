@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bakery Member Portal — Crumbly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-mark">🍰</span> Crumbly</a>
+  </div>
+</nav>
+
+<div class="auth-page">
+  <div class="auth-card">
+    <a href="index.html" class="back-home">← Back to home</a>
+    <div class="auth-icon">🧁</div>
+    <h1>Bakery Member Portal</h1>
+    <p class="subtitle">Manage student cake orders and preparation.</p>
+
+    <div class="demo-banner">
+    <strong>Demo Bakery Account</strong>
+    bakery@crumbly.local · Bakery@123
+  </div>
+
+    <form id="ownerLoginForm" novalidate>
+      <div class="form-group">
+        <label for="ownerEmail">Email</label>
+        <input type="email" id="ownerEmail" placeholder="bakery@crumbly.local">
+        <div class="field-error" id="ownerEmailError">Please enter a valid email.</div>
+      </div>
+      <div class="form-group">
+        <label for="ownerPassword">Password</label>
+        <input type="password" id="ownerPassword" placeholder="Enter password">
+        <div class="field-error" id="ownerPasswordError">Incorrect email or password.</div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+    </form>
+
+    <p class="auth-footer-link">Are you a student? <a href="student-login.html">Go to student sign in</a></p>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script>initOwnerLoginPage();</script>
+</body>
+</html>

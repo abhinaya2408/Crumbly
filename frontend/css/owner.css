@@ -1,0 +1,109 @@
+/* ==========================================================
+   Crumb & Cream — owner.css
+   ========================================================== */
+
+.owner-shell { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 72px); }
+
+.owner-sidebar {
+  background: var(--color-white);
+  border-right: 1px solid var(--color-border);
+  padding: var(--sp-5) var(--sp-3);
+  position: sticky;
+  top: 72px;
+  align-self: start;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+.owner-sidebar .side-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-muted); padding: 0 var(--sp-3); margin: var(--sp-4) 0 var(--sp-1); }
+.owner-sidebar .side-label:first-child { margin-top: 0; }
+.side-link {
+  display: flex; align-items: center; gap: var(--sp-2);
+  padding: 11px var(--sp-3);
+  border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+.side-link:hover { background: var(--color-cream); }
+.side-link.active { background: var(--color-coral-light); color: var(--color-coral-dark); font-weight: 700; }
+.side-link .count { margin-left: auto; font-size: 12px; color: var(--color-text-muted); }
+
+.owner-main { padding: var(--sp-5) var(--sp-5) var(--sp-8); }
+
+.owner-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); margin-bottom: var(--sp-6); }
+.owner-stat-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+}
+.owner-stat-card .stat-num { font-family: var(--font-display); font-size: 30px; font-weight: 700; }
+.owner-stat-card .stat-label { font-size: 13px; color: var(--color-text-muted); margin-top: 4px; }
+.owner-stat-card.new .stat-num { color: var(--color-coral-dark); }
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  flex-wrap: wrap;
+}
+.search-box { position: relative; flex: 1; max-width: 320px; }
+.search-box input { padding-left: 40px; }
+.search-box .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--color-text-muted); }
+
+.filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-pill {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+.filter-pill.active { background: var(--color-charcoal); color: white; border-color: var(--color-charcoal); }
+
+.orders-table-wrap {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+table.orders-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+table.orders-table th {
+  text-align: left;
+  padding: var(--sp-3) var(--sp-3);
+  background: var(--color-cream);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  border-bottom: 1px solid var(--color-border);
+}
+table.orders-table td { padding: var(--sp-3); border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+table.orders-table tr:last-child td { border-bottom: none; }
+table.orders-table tr:hover { background: var(--color-cream); }
+.table-cake-thumb { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+.row-link { font-weight: 600; color: var(--color-coral-dark); }
+
+.owner-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-5); }
+.owner-topbar h1 { font-size: 26px; margin-bottom: 0; }
+
+.mobile-sidebar-toggle { display: none; }
+
+@media (max-width: 980px) {
+  .owner-shell { grid-template-columns: 1fr; }
+  .owner-sidebar {
+    position: static; height: auto; width: 100%;
+    display: none;
+    border-right: none; border-bottom: 1px solid var(--color-border);
+  }
+  .owner-sidebar.open { display: block; }
+  .mobile-sidebar-toggle { display: inline-flex; margin-bottom: var(--sp-3); }
+  .owner-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .orders-table-wrap { overflow-x: auto; }
+  table.orders-table { min-width: 720px; }
+}
